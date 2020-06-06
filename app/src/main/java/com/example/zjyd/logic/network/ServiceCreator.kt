@@ -11,7 +11,8 @@ object ServiceCreator {
     /**
      * Retrofit的根路径
      */
-    private const val BASE_URL = "http://47.100.242.80:8080/web/landService"
+//    private const val BASE_URL = "http://47.100.242.80:8080/web/landService"
+    private const val BASE_URL = "http://192.168.31.184:8080/test1_war_exploded/"
 
     /**
      * 封装retrofit的构建

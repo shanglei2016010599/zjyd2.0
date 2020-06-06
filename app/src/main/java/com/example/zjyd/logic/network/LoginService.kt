@@ -16,7 +16,7 @@ interface LoginService {
      * @return Call<LoginResponse> 返回值是Retrofit内置的Call的类型，并将服务器
      * 响应的数据转换为LoginResponse
      */
-    @GET("code=land")
+    @GET("LoginServlet")
     fun login(@Query("account") account: String,
               @Query("password") password: String): Call<LoginResponse>
 }
