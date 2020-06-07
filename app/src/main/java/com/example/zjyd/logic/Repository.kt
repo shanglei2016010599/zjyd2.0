@@ -1,5 +1,6 @@
 package com.example.zjyd.logic
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.example.zjyd.logic.network.LoginService
 import com.example.zjyd.logic.network.ZjydNetwork
@@ -12,7 +13,7 @@ import kotlin.coroutines.CoroutineContext
  */
 object Repository {
     /**
-     * 返回一个LiveData对象给ViewModel
+     * 返回一个LiveData对象给LoginViewModel
      *
      * 将liveData()函数的线程参数类型指定成Dispatchers.IO，表明代码
      * 在子线程中运行。
@@ -24,6 +25,32 @@ object Repository {
             Result.success(userType)
         } else {
             Result.failure(RuntimeException("response status is ${loginResponse.result}"))
+        }
+    }
+
+    /**
+     * 返回一个LiveData对象给MachineViewModel
+     */
+    fun getMachineType(account: String) = fire(Dispatchers.IO) {
+        val machineTypeResponse = ZjydNetwork.getMachineType(account)
+        if (machineTypeResponse.result == "success") {
+            val machineType = machineTypeResponse.machineType
+            Result.success(machineType)
+        } else {
+            Result.failure(RuntimeException("response status is ${machineTypeResponse.result}"))
+        }
+    }
+
+    /**
+     * 返回一个LiveData对象给MachineViewModel
+     */
+    fun getMachine(account: String, machineType: String) = fire(Dispatchers.IO) {
+        val machineResponse = ZjydNetwork.getMachine(account, machineType)
+        if (machineResponse.result == "success") {
+            val machineList = machineResponse.machineList
+            Result.success(machineList)
+        } else {
+            Result.failure(RuntimeException("response status is ${machineResponse.result}"))
         }
     }
 

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    val tag = "LoginActivity"
+    private val tag = "LoginActivity"
 
     /**
      * 使用懒加载技术来初始化ViewModel
@@ -70,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
                     "error" -> "账号或密码错误".showToast()
                 }
             } else {
-                "数据返回为空".showToast()
-                Log.e(tag, "数据返回为空")
+                "访问服务器失败".showToast()
+                Log.e(tag, "访问服务器失败")
             }
         })
     }

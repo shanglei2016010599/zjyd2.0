@@ -1,5 +1,6 @@
 package com.example.zjyd.logic.network
 
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,10 +20,33 @@ object ZjydNetwork {
     private val loginService = ServiceCreator.create<LoginService>()
 
     /**
+     * 获得MachineTypeService接口的动态代理对象
+     */
+    private val machineTypeService =
+        ServiceCreator.create<MachineTypeService>()
+
+    /**
+     * 获得MachineService接口的动态代理对象
+     */
+    private val machineService = ServiceCreator.create<MachineService>()
+
+    /**
      * 登录操作，调用LoginService接口中的login()方法
      */
     suspend fun login(account: String, password: String) =
         loginService.login(account, password).await()
+
+    /**
+     * 获得机器类别列表，调用MachineTypeService接口中的getMachineType()方法
+     */
+    suspend fun getMachineType(account: String) =
+        machineTypeService.getMachineType(account).await()
+
+    /**
+     * 获得机器列表，调用MachineService接口中的getMachine()方法
+     */
+    suspend fun getMachine(account: String, machineType: String)
+         = machineService.getMachine(account, machineType).await()
 
     /**
      * 利用协程，简化回调方法
