@@ -57,7 +57,7 @@ class MachineFragment : Fragment() {
         account?.let { viewModel.getMachineType(it) }
 
         /**
-         * List列表的Adapter初始化，使用只用文字的简单布局
+         * List列表的Adapter初始化，使用简单的文字布局
          */
         adapter = ArrayAdapter(ZjydApplication.context, android.R.layout.simple_list_item_1,
             dataList)
